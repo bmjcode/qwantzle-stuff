@@ -1,0 +1,7 @@
+*.a
+*.exe
+*.o
+*.swp
+anagram_search
+is_spellable
+word_search
