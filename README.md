@@ -16,3 +16,6 @@ These are word lists and other things I've created to help solve the infamous an
 You will need my [word search tools](https://github.com/bmjcode/word-search) to use most of these.
 * **[generate_wordlist.sh](generate_wordlist.sh)**: generate wordlist.txt from qwantzcorpus.txt.
 * **[generate_longest.sh](generate_longest.sh)**: generate longest\_pairs.txt from wordlist.txt.
+
+## External links
+* [Ell Bradshaw's anacryptogram solver](https://www.afifthofnothing.com/anacryptogram.html)
