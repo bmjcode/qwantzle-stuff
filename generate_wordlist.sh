@@ -29,7 +29,7 @@ fi
 
 if [ ! -x is_spellable ]; then
     echo "Error: Could not find ./is_spellable" >&2
-    echo "Get the code from https://github.com/bmjcode/word-search" >&2
+    echo "Get the code from https://github.com/bmjcode/anagram" >&2
     exit 1
 fi
 

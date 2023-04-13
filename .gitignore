@@ -2,6 +2,6 @@
 *.exe
 *.o
 *.swp
-anagram_search
+anagram
 is_spellable
-word_search
+spellable
