@@ -18,9 +18,8 @@
 DICTIONARY=/usr/share/dict/words
 
 # Letters used in the Qwantzle (case-sensitive)
-# Note "I" is a special case and deliberately omitted
 LETTER_POOL=ttttttttttttooooooooooeeeeeeeeaaaaaaallllll\
-nnnnnnuuuuuuiiiiisssssdddddhhhhhyyyyyrrrfffbbwwkcmvg
+nnnnnnuuuuuuiiiiisssssdddddhhhhhyyyyyIIIrrrfffbbwwkcmvg
 
 if [ ! -r $DICTIONARY ]; then
     echo "Error: No dictionary found at $DICTIONARY" >&2
@@ -38,12 +37,11 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# Keep it sorted by frequency count, but strip the number from the output
-# The longest word is 11 letters, and the second-longest is 8 letters
-# "I" and "a" (case-sensitive) are the only plausible one-letter words,
-#     and "I" is again a special case and deliberately omitted
-# The final letter is "w". Since there are only two "w"'s in the pool,
-#     we can omit words with two "w"'s where neither is the last letter
+# Keep it sorted by frequency count, but strip the number from the output.
+# The longest word is 11 letters, and the second-longest is 8 letters.
+# "I" and "a" (case-sensitive) are the only plausible one-letter words.
+# The final letter is "w", and since there are only two "w"'s in the pool,
+# we can omit words with two "w"'s where neither is the last letter
 WORDS=$(grep -E '^[0-9]+ (a|[A-Za-z]{2,8}|[A-Za-z]{11})$' $1 \
         | cut -d' ' -f2 \
         | tr '[:upper:]' '[:lower:]' \
@@ -56,6 +54,10 @@ for WORD in $WORDS ; do
         SPELLABLE_WORDS="$SPELLABLE_WORDS $WORD"
     fi
 done
+
+# The Qwantz Corpus is all lowercase. Fortunately, we only have one
+# plausible uppercase word
+echo I
 
 # The words are all dictionary words
 for WORD in $SPELLABLE_WORDS ; do
