@@ -26,8 +26,8 @@ if [ ! -r $DICTIONARY ]; then
     exit 1
 fi
 
-if [ ! -x is_spellable ]; then
-    echo "Error: Could not find ./is_spellable" >&2
+if [ ! -x spellable ]; then
+    echo "Error: Could not find ./spellable" >&2
     echo "Get the code from https://github.com/bmjcode/anagram" >&2
     exit 1
 fi
@@ -45,22 +45,15 @@ fi
 WORDS=$(grep -E '^[0-9]+ (a|[A-Za-z]{2,8}|[A-Za-z]{11})$' $1 \
         | cut -d' ' -f2 \
         | tr '[:upper:]' '[:lower:]' \
-        | grep -v -E '^[a-z]*w[a-z]*w[a-vx-z]+')
-
-# Limit our search to words we can spell with our letter pool
-SPELLABLE_WORDS=''
-for WORD in $WORDS ; do
-    if ./is_spellable $LETTER_POOL $WORD ; then
-        SPELLABLE_WORDS="$SPELLABLE_WORDS $WORD"
-    fi
-done
+        | grep -v -E '^[a-z]*w[a-z]*w[a-vx-z]+' \
+	| ./spellable -l - $LETTER_POOL)
 
 # The Qwantz Corpus is all lowercase. Fortunately, we only have one
 # plausible uppercase word
 echo I
 
 # The words are all dictionary words
-for WORD in $SPELLABLE_WORDS ; do
+for WORD in $WORDS ; do
     # My copy of /usr/share/dict/words uses inconsistent capitalization
     grep -i -E "^$WORD$" $DICTIONARY | tr '[:upper:]' '[:lower:]'
 done
