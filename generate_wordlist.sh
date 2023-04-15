@@ -43,6 +43,7 @@ fi
 # The final letter is "w", and since there are only two "w"'s in the pool,
 # we can omit words with two "w"'s where neither is the last letter
 WORDS=$(grep -E '^[0-9]+ (a|[A-Za-z]{2,8}|[A-Za-z]{11})$' $1 \
+	| grep -E -v '^[12] ' \
         | cut -d' ' -f2 \
         | tr '[:upper:]' '[:lower:]' \
         | grep -v -E '^[a-z]*w[a-z]*w[a-vx-z]+' \

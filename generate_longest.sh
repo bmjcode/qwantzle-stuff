@@ -35,7 +35,8 @@ TEMPFILE=$(mktemp)
 
 # The longest word is 11 letters, and the next-longest is 8 letters
 # They are side-by-side in the solution
-LONGER_WORDS=$(grep -E '^[a-z]{11}$' $1)
+#LONGER_WORDS=$(grep -E '^[a-z]{11}$' $1)
+LONGER_WORDS="fundamental"  # allegedly
 SHORTER_WORDS=$(grep -E '^[a-z]{8}$' $1)
 for LONGER in $LONGER_WORDS ; do
     for SHORTER in $SHORTER_WORDS ; do
